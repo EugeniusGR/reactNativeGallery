@@ -1,17 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
-  Image,
   FlatList,
-  ScrollView,
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {ScreensOption} from '../../common';
+import {RootState} from '../../store/store';
+import {getImages} from '../../store/actions/action';
 import styles from './styles';
 
 const Home: React.FC = () => {
-  const [data, setData] = useState([]);
+  const {images} = useSelector((state: RootState) => state.imageReducer);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const getPic = async () => {
     try {
@@ -19,7 +24,7 @@ const Home: React.FC = () => {
         'https://api.unsplash.com/photos/?client_id=ab3411e4ac868c2646c0ed488dfd919ef612b04c264f3374c97fff98ed253dc9',
       );
       const json = await response.json();
-      setData(json);
+      dispatch(getImages(json));
     } catch (error) {
       console.error(error);
     }
@@ -29,9 +34,12 @@ const Home: React.FC = () => {
     getPic();
   }, []);
 
-  const renderItem = ({item: {urls, alt_description, user}}) => {
+  const renderItem = ({item: {urls, alt_description, user, id, color}}) => {
     return (
-      <TouchableOpacity style={styles.imageItem} activeOpacity={0.6}>
+      <TouchableOpacity
+        style={styles.imageItem}
+        activeOpacity={0.6}
+        onPress={() => navigation.navigate(ScreensOption.Image, {id, color})}>
         <ImageBackground style={styles.image} source={{uri: urls.regular}}>
           <View style={styles.imageItemInfo}>
             <Text style={styles.imageInfoTitle}>{alt_description}</Text>
@@ -41,13 +49,16 @@ const Home: React.FC = () => {
       </TouchableOpacity>
     );
   };
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Gallery</Text>
-      </View>
-
-      <FlatList data={data} renderItem={renderItem} style={styles.list} />
+      <FlatList
+        data={images}
+        key="#"
+        renderItem={renderItem}
+        style={styles.list}
+        numColumns={2}
+      />
     </View>
   );
 };

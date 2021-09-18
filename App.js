@@ -1,17 +1,22 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  Text,
-} from 'react-native';
+import {Provider} from 'react-redux';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Home, FullImage} from './src/screens';
+import Store from './src/store/store';
 
-import { Home } from './src/screens';
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-
   return (
-    <SafeAreaView>
-      <Home />
-    </SafeAreaView>
+    <Provider store={Store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Gallery" component={Home} />
+          <Stack.Screen name="Image" component={FullImage} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

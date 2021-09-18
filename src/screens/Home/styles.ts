@@ -17,20 +17,22 @@ const styles = StyleSheet.create({
   },
   imageItem: {
     display: 'flex',
+    width: 190,
     flexDirection: 'row',
     borderRadius: 10,
     overflow: 'hidden',
     marginBottom: 20,
     backgroundColor: '#eee',
+    marginLeft: 10,
   },
   list: {
-    padding: 10,
+    paddingVertical: 10,
   },
   imageItemInfo: {
     padding: 10,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    height: 90,
-    marginTop: 110,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    minHeight: 70,
+    marginTop: 130,
   },
   imageInfoAuthor: {
     color: '#fff',
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 18,
+    height: 25,
   },
 });
 
