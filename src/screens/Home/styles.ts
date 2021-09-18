@@ -27,18 +27,18 @@ const styles = StyleSheet.create<Style>({
     height: 200,
     flex: 1,
   },
+  list: {
+    paddingVertical: 10,
+  },
   imageItem: {
     display: 'flex',
     width: 190,
     flexDirection: 'row',
     borderRadius: 10,
     overflow: 'hidden',
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: '#eee',
     marginLeft: 10,
-  },
-  list: {
-    paddingVertical: 10,
   },
   imageItemInfo: {
     padding: 10,
