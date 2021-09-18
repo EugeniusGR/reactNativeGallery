@@ -1,6 +1,18 @@
-import {StyleSheet} from 'react-native';
+import {ImageStyle, StyleSheet, TextStyle, ViewStyle} from 'react-native';
 
-const styles = StyleSheet.create({
+type Style = {
+  container: ViewStyle;
+  header: ViewStyle;
+  headerText: TextStyle;
+  image: ImageStyle;
+  imageItem: ViewStyle;
+  list: ViewStyle;
+  imageItemInfo: ViewStyle;
+  imageInfoTitle: TextStyle;
+  imageInfoAuthor: TextStyle;
+};
+
+const styles = StyleSheet.create<Style>({
   container: {
     height: '100%',
   },
@@ -34,14 +46,14 @@ const styles = StyleSheet.create({
     minHeight: 70,
     marginTop: 130,
   },
-  imageInfoAuthor: {
-    color: '#fff',
-  },
   imageInfoTitle: {
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 18,
     height: 25,
+  },
+  imageInfoAuthor: {
+    color: '#fff',
   },
 });
 

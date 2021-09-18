@@ -54,7 +54,6 @@ const Home: React.FC = () => {
     <View style={styles.container}>
       <FlatList
         data={images}
-        key="#"
         renderItem={renderItem}
         style={styles.list}
         numColumns={2}
